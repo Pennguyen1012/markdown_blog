@@ -10,22 +10,27 @@ router.get('/new', (req, res) => {
 })
 
 //this is for routing to the newly created article
-router.get('/:id', (req, res) => {
-
+router.get('/:id', async (req, res) => {
+    const article = await Article.findById(req.params.id)
+    if (article == null) {
+        res.redirect('/')
+    }
+    res.render('articles/show', {articles: article})
 })
 
 router.post('/', async (req, res) => {
-    const article = new Article({
+    let article = new Article({
         title: req.body.title,
         description: req.body.description,
         markdown: req.body.markdown
     })
     try {
-        article = await articles.save()
-        res.redirect(`/articles/${articles.id}`)
+        article = await article.save()
+        res.redirect(`/articles/${article.id}`)
     } catch (error) {
-        res.render('articles/new', {article: article})
         console.log(error)
+        res.render('articles/new', {article: article})
+
     }
 })
 
