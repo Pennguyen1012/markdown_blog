@@ -4,9 +4,9 @@ const router = express()
 //import the table from models/articles.js
 const Article = require('./../models/articles')
 
-//this is for routing to new article
+//this is for routing to new article and passing article values.
 router.get('/new', (req, res) => {
-    res.render('articles/new')
+    res.render('articles/new', { article: new Article() })
 })
 
 //this is for routing to the newly created article

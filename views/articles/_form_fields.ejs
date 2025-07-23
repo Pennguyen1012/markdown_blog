@@ -5,12 +5,12 @@
 
 <div class="form-group">
     <label for="title">Description</label>
-    <textarea class="form-control" id="description" name="description"><%= article ? article.description %></textarea>
+    <textarea required class="form-control" id="description" name="description"><%= article ? article.description : ''%></textarea>
 </div>
-
+`
 <div class="form-group">
     <label for="title">Markdown</label>
-        <textarea class="form-control" id="description" name="description"><%= article ? article.description %></textarea>
+        <textarea required class="form-control" id="markdown" name="markdown"><%= article ? article.description : ''%></textarea>
 </div>
 
 <a href="/" class ="btn btn-secondary mt-3">Cancel</a>
